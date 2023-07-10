@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.post('/addTask', function(req, res, next) {
+router.post('/', function(req, res, next) {
   const taskName = req.body.taskName;
   const createDate = Date.now();
   
