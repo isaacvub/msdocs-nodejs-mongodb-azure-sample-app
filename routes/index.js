@@ -5,6 +5,7 @@ var Note = require('../models/note');
 var router = express.Router();
 
 const axios = require('axios');
+const apiToken = process.env.MIRO_API_TOKEN;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
