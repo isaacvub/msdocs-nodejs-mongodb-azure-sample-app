@@ -3,10 +3,10 @@ var Task = require('../models/task');
 var Note = require('../models/note');
 
 var router = express.Router();
-const app = express();
 
 const axios = require('axios');
 const apiToken = process.env.MIRO_API_TOKEN;
+const miroInfo = Object;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -87,33 +87,30 @@ axios.get('https://api.miro.com/v2/boards/uXjVM8y1wMw=/items', {
   // Handle the API response
   //console.log(response.data);
   console.log(response.data.data[0].position);
-  app.post('/', function(req, res, next) {
-    const taskName = req.body.taskName;
-    const createDate = Date.now();
-    
-    var note = new Note({
-      notePosition: {
-        positionX: response.data.data[0].position.x,
-        positionY: response.data.data[0].position,y,
-      },
-      content: response.data.data[0].data.title,
-      type: response.data.data[0].type
-    });
-    console.log(`Adding a new note`)
-  
-    note.save()
-        .then(() => { 
-          console.log(`Added new note`)        
-          res.redirect('/'); })
-        .catch((err) => {
-            console.log(err);
-            res.send('Sorry! Something went wrong.');
-        });
-  });
-
 })
 .catch(error => {
   // Handle the API error
   console.error(error);
 });
 
+router.post('/', function(req, res, next) {
+  console.log(`entré al possttt`);
+  var note = new Note({
+    notePosition: {
+      positionX: response.data.data[0].position.x,
+      positionY: response.data.data[0].position,y,
+    },
+    content: response.data.data[0].data.title,
+    type: response.data.data[0].type
+  });
+  console.log(`Adding a new note`)
+
+  note.save()
+      .then(() => { 
+        console.log(`Added new note`)        
+        res.redirect('/'); })
+      .catch((err) => {
+          console.log(err);
+          res.send('Sorry! Something went wrong.');
+      });
+});
