@@ -6,7 +6,7 @@ var router = express.Router();
 
 const axios = require('axios');
 const apiToken = process.env.MIRO_API_TOKEN;
-const miroResponse = Object;
+var miroResponse;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
