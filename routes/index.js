@@ -3,6 +3,7 @@ var Task = require('../models/task');
 var Note = require('../models/note');
 
 var router = express.Router();
+const app = express();
 
 const axios = require('axios');
 const apiToken = process.env.MIRO_API_TOKEN;
@@ -24,7 +25,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.post('/', function(req, res, next) {
+router.post('/addTask', function(req, res, next) {
   const taskName = req.body.taskName;
   const createDate = Date.now();
   
@@ -86,7 +87,7 @@ axios.get('https://api.miro.com/v2/boards/uXjVM8y1wMw=/items', {
   // Handle the API response
   //console.log(response.data);
   console.log(response.data.data[0].position);
-  router.post('/addNotes', function(req, res, next) {
+  app.post('/', function(req, res, next) {
     const taskName = req.body.taskName;
     const createDate = Date.now();
     
