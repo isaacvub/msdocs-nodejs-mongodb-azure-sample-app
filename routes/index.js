@@ -6,7 +6,7 @@ var router = express.Router();
 
 const axios = require('axios');
 const apiToken = process.env.MIRO_API_TOKEN;
-const miroInfo = Object;
+const miroResponse = Object;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -87,6 +87,7 @@ axios.get('https://api.miro.com/v2/boards/uXjVM8y1wMw=/items', {
   // Handle the API response
   //console.log(response.data);
   console.log(response.data.data[0].position);
+  miroResponse = response;
 })
 .catch(error => {
   // Handle the API error
@@ -97,11 +98,11 @@ router.post('/completeTask', function(req, res, next) {
   console.log(`entré al possttt`);
   var note = new Note({
     notePosition: {
-      positionX: response.data.data[0].position.x,
-      positionY: response.data.data[0].position,y,
+      positionX: miroResponse.data.data[0].position.x,
+      positionY: miroResponse.data.data[0].position,y,
     },
-    content: response.data.data[0].data.title,
-    type: response.data.data[0].type
+    content: miroResponse.data.data[0].data.title,
+    type: miroResponse.data.data[0].type
   });
   console.log(`Adding a new note`)
 
