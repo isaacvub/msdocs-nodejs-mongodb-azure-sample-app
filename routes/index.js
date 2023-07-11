@@ -45,7 +45,7 @@ router.post('/addTask', function(req, res, next) {
       });
 });
 
-router.post('/completeTask', function(req, res, next) {
+/*router.post('/completeTask', function(req, res, next) {
   console.log("I am in the PUT method")
   const taskId = req.body._id;
   const completedDate = Date.now();
@@ -58,7 +58,7 @@ router.post('/completeTask', function(req, res, next) {
       console.log(err);
       res.send('Sorry! Something went wrong.');
     });
-});
+});*/
 
 
 router.post('/deleteTask', function(req, res, next) {
@@ -93,7 +93,7 @@ axios.get('https://api.miro.com/v2/boards/uXjVM8y1wMw=/items', {
   console.error(error);
 });
 
-router.post('/', function(req, res, next) {
+router.post('/completeTask', function(req, res, next) {
   console.log(`entré al possttt`);
   var note = new Note({
     notePosition: {
