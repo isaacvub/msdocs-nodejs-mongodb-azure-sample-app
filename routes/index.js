@@ -99,7 +99,7 @@ router.post('/completeTask', function(req, res, next) {
   var note = new Note({
     notePosition: {
       positionX: miroResponse.data.data[0].position.x,
-      positionY: miroResponse.data.data[0].position,y,
+      positionY: miroResponse.data.data[0].position.y,
     },
     content: miroResponse.data.data[0].data.title,
     type: miroResponse.data.data[0].type
