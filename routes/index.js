@@ -119,6 +119,11 @@ router.post('/completeTask', function(req, res, next) {
       });
 });
 
+router.get('/unityTestGet', function(req, res, next) {
+  console.log(`entré a la función de unity`);
+  
+});
+
 router.post('/unityTest', function(req, res, next) {
   console.log(`entré a la función de unity`);
   
