@@ -5,6 +5,7 @@ var Note = require('../models/note');
 var router = express.Router();
 
 const axios = require('axios');
+const task = require('../models/task');
 const apiToken = process.env.MIRO_API_TOKEN;
 var miroResponse;
 
@@ -121,7 +122,16 @@ router.post('/completeTask', function(req, res, next) {
 
 router.get('/unityTestGet', function(req, res, next) {
   console.log(`entré a la función de unity`);
-  
+  Note.find()
+  .then((notes) => {      
+    console.log(`notes: ${notes}`);
+    console.log(typeof(notes));
+    res.send(notes);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.send('Sorry! Something went wrong.');
+  });
 });
 
 router.post('/unityTest', function(req, res, next) {
