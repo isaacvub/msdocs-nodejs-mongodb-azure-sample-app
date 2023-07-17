@@ -101,10 +101,8 @@ axios.get('https://api.miro.com/v2/boards/uXjVM8y1wMw=/items', {
 router.post('/completeTask', function(req, res, next) {
   console.log(`entré al possttt`);
   var note = new Note({
-    notePosition: {
-      positionX: miroResponse.data.data[0].position.x,
-      positionY: miroResponse.data.data[0].position.y,
-    },
+    positionX: miroResponse.data.data[0].position.x,
+    positionY: miroResponse.data.data[0].position.y,
     content: miroResponse.data.data[0].data.title,
     type: miroResponse.data.data[0].type
   });
@@ -126,7 +124,7 @@ router.get('/unityTestGet', function(req, res, next) {
   .then((notes) => {      
     console.log(`notes: ${notes}`);
     console.log(typeof(notes));
-    res.send(notes[0]);
+    res.send(notes);
   })
   .catch((err) => {
     console.log(err);
