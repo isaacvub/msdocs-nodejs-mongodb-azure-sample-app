@@ -126,7 +126,7 @@ router.get('/unityTestGet', function(req, res, next) {
   .then((notes) => {      
     console.log(`notes: ${notes}`);
     console.log(typeof(notes));
-    res.send(notes);
+    res.send(notes[0]);
   })
   .catch((err) => {
     console.log(err);
