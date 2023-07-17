@@ -103,10 +103,10 @@ router.post('/completeTask', function(req, res, next) {
   for(let step = 0; step < 2; step++)
   {
     var note = new Note({
-      positionX: miroResponse.data.data[0].position.x,
-      positionY: miroResponse.data.data[0].position.y,
-      content: miroResponse.data.data[0].data.title,
-      type: miroResponse.data.data[0].type
+      positionX: miroResponse.data.data[step].position.x,
+      positionY: miroResponse.data.data[step].position.y,
+      content: miroResponse.data.data[step].data.title,
+      type: miroResponse.data.data[step].type
     });
     console.log(`Adding a new note`)
 
