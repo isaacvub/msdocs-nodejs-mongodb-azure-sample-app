@@ -112,8 +112,9 @@ router.post('/completeTask', function(req, res, next) {
 
     note.save()
         .then(() => { 
-          console.log(`Added new note`)        
-          res.redirect('/'); })
+          console.log(`Added new note`) 
+          if(step == 1)       
+            res.redirect('/'); })
         .catch((err) => {
             console.log(err);
             res.send('Sorry! Something went wrong.');
