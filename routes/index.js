@@ -100,22 +100,25 @@ axios.get('https://api.miro.com/v2/boards/uXjVM8y1wMw=/items', {
 
 router.post('/completeTask', function(req, res, next) {
   console.log(`entré al possttt`);
-  var note = new Note({
-    positionX: miroResponse.data.data[0].position.x,
-    positionY: miroResponse.data.data[0].position.y,
-    content: miroResponse.data.data[0].data.title,
-    type: miroResponse.data.data[0].type
-  });
-  console.log(`Adding a new note`)
+  for(let step = 0; step < 2; step++)
+  {
+    var note = new Note({
+      positionX: miroResponse.data.data[0].position.x,
+      positionY: miroResponse.data.data[0].position.y,
+      content: miroResponse.data.data[0].data.title,
+      type: miroResponse.data.data[0].type
+    });
+    console.log(`Adding a new note`)
 
-  note.save()
-      .then(() => { 
-        console.log(`Added new note`)        
-        res.redirect('/'); })
-      .catch((err) => {
-          console.log(err);
-          res.send('Sorry! Something went wrong.');
-      });
+    note.save()
+        .then(() => { 
+          console.log(`Added new note`)        
+          res.redirect('/'); })
+        .catch((err) => {
+            console.log(err);
+            res.send('Sorry! Something went wrong.');
+        });
+  }      
 });
 
 router.get('/unityTestGet', function(req, res, next) {
