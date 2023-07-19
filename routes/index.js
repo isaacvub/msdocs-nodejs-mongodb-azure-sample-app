@@ -81,7 +81,8 @@ router.post('/deleteTask', function(req, res, next) {
 
 module.exports = router;
 
-axios.get('https://api.miro.com/v2/boards/uXjVM8y1wMw=/items', {  
+//axios.get('https://api.miro.com/v2/boards/uXjVM8y1wMw=/items', {  
+  axios.get('https://api.miro.com/v2/boards/uXjVM8y1wMw%3D/items?parent_item_id=3458764557648715202&limit=50', {  
   headers: {
     Authorization: `Bearer ${apiToken}`
 
@@ -89,8 +90,6 @@ axios.get('https://api.miro.com/v2/boards/uXjVM8y1wMw=/items', {
 })
 .then(response => {
   // Handle the API response
-  //console.log(response.data);
-  console.log(response.data.data[0].position);
   miroResponse = response;
 })
 .catch(error => {
@@ -99,13 +98,16 @@ axios.get('https://api.miro.com/v2/boards/uXjVM8y1wMw=/items', {
 });
 
 router.post('/completeTask', function(req, res, next) {
-  console.log(`entré al possttt`);
-  for(let step = 0; step < 2; step++)
+  console.log(`entré al post`);
+  for(let step = 0; step < miroResponse.data.data.length; step++)
   {
     var note = new Note({
       positionX: miroResponse.data.data[step].position.x,
       positionY: miroResponse.data.data[step].position.y,
-      content: miroResponse.data.data[step].data.title,
+      content: miroResponse.data.data[step].data.content,
+      color: miroResponse.data.data[step].style.fillColor,
+      width: miroResponse.data.data[step].geometry.width,
+      height: miroResponse.data.data[step].geometry.height,
       type: miroResponse.data.data[step].type
     });
     console.log(`Adding a new note`)
